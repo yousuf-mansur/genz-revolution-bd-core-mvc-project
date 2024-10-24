@@ -1,0 +1,73 @@
+﻿@model GenZRevolutionBD.Models.ViewModels.SuperHeroVM
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="row">
+    <div class="col-md-12">
+
+        <form asp-action="Edit" enctype="multipart/form-data" method="post">
+            <div class="row d-flex justify-content-between ">
+
+                <div class="col-6">
+                    <h4 class="display-5">Artist</h4>
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="form-group">
+                        <label asp-for="SuperHeroName" class="control-label fw-bold mb-1"></label>
+                        <input asp-for="SuperHeroName" class="form-control" />
+                        <span asp-validation-for="SuperHeroName" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="DateOfDeath" class="control-label fw-bold mb-1"></label>
+                        <input asp-for="DateOfDeath" class="form-control" type="date" />
+                        <span asp-validation-for="DateOfDeath" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Age" class="control-label fw-bold mb-1"></label>
+                        <input asp-for="Age" class="form-control" type="number" />
+                        <span asp-validation-for="Age" class="text-danger"></span>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label asp-for="PictureFile" class="control-label fw-bold mb-1"></label>
+                        <input asp-for="PictureFile" class="form-control form-control-sm" type="file" />
+                        <img src="@Model.Picture" width="35" class="rounded-circle" />
+                        <span asp-validation-for="PictureFile" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group mt-3">
+                        <input type="submit" value="Update" class="btn btn-primary" />
+                    </div>
+
+                </div>
+
+                <div class="col-6">
+                    <h4 class="display-5">Powers</h4>
+                    <div class="d-flex justify-content-end">
+                        <a id="btnPlus" class="btn btn-primary btn-sm mb-2">Add More</a>
+                    </div>
+                    <div id="powerContainer">
+                        @foreach (var item in Model.PowerList)
+                        {
+                            <script>
+                                LoadData(@item);
+                            </script>
+                        }
+
+                    </div>
+                </div>
+
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" class="btn btn-secondary mt-2">Back to List</a>
+</div>
